@@ -6,13 +6,14 @@
 import 'package:flutter/material.dart' show debugPrint;
 import 'package:wanandroid/models/home_banner_info.dart';
 
+
 JsonConvert jsonConvert = JsonConvert();
 typedef JsonConvertFunction<T> = T Function(Map<String, dynamic> json);
 
 class JsonConvert {
 	static final Map<String, JsonConvertFunction> _convertFuncMap = {
-
 		(HomeBannerInfo).toString(): HomeBannerInfo.fromJson,
+
 	};
 
   T? convert<T>(dynamic value) {
@@ -91,11 +92,10 @@ class JsonConvert {
 
 	//list is returned by type
 	static M? _getListChildType<M>(List<Map<String, dynamic>> data) {
-
-
 		if(<HomeBannerInfo>[] is M){
 			return data.map<HomeBannerInfo>((Map<String, dynamic> e) => HomeBannerInfo.fromJson(e)).toList() as M;
 		}
+
 
 		debugPrint("${M.toString()} not found");
 	

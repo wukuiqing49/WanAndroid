@@ -1,11 +1,13 @@
-import 'package:wanandroid/generated/json/base/json_field.dart';
+
 import 'package:wanandroid/models/api_response.g.dart';
 import 'dart:convert';
 
+import '../generated/json/base/json_convert_content.dart';
+
 class ApiResponse<T> {
 
-	int? code;
-	String? message;
+	int? errorCode;
+	String? errorMsg;
   T ? data;
   
   ApiResponse();
@@ -18,5 +20,7 @@ class ApiResponse<T> {
   String toString() {
     return jsonEncode(this);
   }
+
 }
+
 

@@ -128,7 +128,6 @@ class RequestClient {
   ///请求响应内容处理
   T? _handleResponse<T>(Response response) {
     if (response.statusCode == 200) {
-
       if(T.toString() == (RawData).toString()){
         RawData raw = RawData();
         raw.value = response.data;
@@ -145,10 +144,10 @@ class RequestClient {
 
   ///业务内容处理
   T? _handleBusinessResponse<T>(ApiResponse<T> response) {
-    if (response.code == RequestConfig.successCode) {
+    if (response.errorCode == RequestConfig.successCode) {
       return response.data;
     } else {
-      var exception = ApiException(response.code, response.message);
+      var exception = ApiException(response.errorCode, response.errorMsg);
       throw exception;
     }
   }

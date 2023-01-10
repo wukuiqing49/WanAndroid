@@ -3,15 +3,16 @@ import 'package:wanandroid/models/api_response.dart';
 
 ApiResponse<T> $ApiResponseFromJson<T>(Map<String, dynamic> json) {
 	final ApiResponse<T> apiResponse = ApiResponse<T>();
-	final int? code = jsonConvert.convert<int>(json['code']);
-	if (code != null) {
-		apiResponse.code = code;
+	final int? errorCode = jsonConvert.convert<int>(json['errorCode']);
+	if (errorCode != null) {
+		apiResponse.errorCode = errorCode;
 	}
-	final String? message = jsonConvert.convert<String>(json['message']);
-	if (message != null) {
-		apiResponse.message = message;
+	final String? errorMsg = jsonConvert.convert<String>(json['errorMsg']);
+	if (errorMsg != null) {
+		apiResponse.errorMsg = errorMsg;
 	}
-	T ? data =json['data'] is List? jsonConvert.convertList<T>(json['data']) as T?: jsonConvert.convert<T>(json['data']);
+
+	final T ? data = jsonConvert.convert<T>(json['data']);
 	if (data != null) {
 		apiResponse.data = data;
 	}
@@ -20,8 +21,8 @@ ApiResponse<T> $ApiResponseFromJson<T>(Map<String, dynamic> json) {
 
 Map<String, dynamic> $ApiResponseToJson(ApiResponse entity) {
 	final Map<String, dynamic> data = <String, dynamic>{};
-	data['code'] = entity.code;
-	data['message'] = entity.message;
+	data['errorCode'] = entity.errorCode;
+	data['errorMsg'] = entity.errorMsg;
 	data['data'] = entity.data?.toJson();
 	return data;
 }
